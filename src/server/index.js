@@ -24,32 +24,6 @@ app.get("/", (req, res) => {
   res.send("Starting point for app.");
 });
 
-app.post("/test", async (req, res, next) => {
-  try {
-    const { username, password } = req.body;
-    const user = await User.create({ username, password });
-    return res.status(200).json(user);
-  } catch (error) {
-    next(error);
-  }
-});
-
-app.post("/jwt", async (req, res, next) => {
-  try {
-    const { username } = req.body;
-    const user = await User.findOne({ username });
-    if (user) {
-      let token = jwt.sign({ id: user.id }, "mysecret", {
-        algorithm: "HS256",
-        expiresIn: "1h",
-      });
-      res.status(200).json(token);
-    }
-  } catch (error) {
-    next(error);
-  }
-});
-
 app.get("/secret", isAuthenticated, async (req, res, next) => {
   const user = await User.findById({ _id: res.locals.id });
   res.status(200).json(user);
