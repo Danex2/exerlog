@@ -2,7 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const helmet = require("helmet");
 const cors = require("cors");
-const jwt = require("jsonwebtoken");
+
 const User = require("./models/User");
 const authentication = require("./routes/authentication");
 const isAuthenticated = require("./middleware/middleware");

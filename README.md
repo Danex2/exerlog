@@ -40,6 +40,8 @@ To run the project using docker use docker-compose
 
 ## Author
 
+[Dane Miller](https://twitter.com/hybridearth)
+
 ## License
 
 This project is open source and available under the [MIT License](https://github.com/danex2/exerlog/blob/master/LICENSE).
