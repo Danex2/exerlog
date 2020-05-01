@@ -6,5 +6,36 @@ Just a fullstack app made with express / react during a pandemic to help me get 
 
 ## Development
 
-- Install dependencies with `npm` or `yarn`
-- (Running backend and frontend with one command or docker should follow next)
+### Prerequisites
+
+- At least **_ Node version 12 _**
+- MongoDB installed
+- Create a `.env` file in the root of the project with these variables
+
+```javascript
+PORT = 3000;
+DB_URI = YOUR_MONGO_URI_HERE;
+```
+
+### Installation
+
+```javascript
+git clone https://github.com/Danex2/exerlog.git
+cd exerlog
+npm install
+```
+
+### Running the project without Docker
+
+To run the project just do `npm run dev`
+
+### Running the project with Docker
+
+To run the project using docker use docker-compose
+`docker-compose up`
+
+## Testing
+
+## Author
+
+## License
