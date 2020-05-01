@@ -1,0 +1,32 @@
+{
+  "name": "exerlog",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "private": true,
+  "scripts": {
+    "dev": "nodemon src/server/index.js"
+  },
+  "keywords": [],
+  "author": "Dane Miller <khadane.miller@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "autoprefixer": "^9.7.6",
+    "bcrypt": "^4.0.1",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "helmet": "^3.22.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.9.11",
+    "parcel-bundler": "^1.12.4",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "tailwindcss": "^1.4.0"
+  },
+  "devDependencies": {
+    "jest": "^25.5.2",
+    "nodemon": "^2.0.3",
+    "supertest": "^4.0.2"
+  }
+}
