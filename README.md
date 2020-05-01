@@ -10,7 +10,7 @@ Just a fullstack app made with express / react during a pandemic to help me get 
 
 ### Prerequisites
 
-- At least **_ Node version 12 _**
+- At least ** Node version 12 ** installed
 - MongoDB installed
 - Create a `.env` file in the root of the project with these variables
 
