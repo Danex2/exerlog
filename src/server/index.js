@@ -4,8 +4,8 @@ const helmet = require("helmet");
 const cors = require("cors");
 
 const User = require("./models/User");
-const authentication = require("./routes/authentication");
-const exercise = require("./routes/exercise");
+const authentication = require("./routes/userRoutes");
+const exercise = require("./routes/exerciseRoutes");
 const isAuthenticated = require("./middleware/middleware");
 
 require("dotenv").config();

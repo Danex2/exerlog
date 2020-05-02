@@ -15,7 +15,8 @@ const ExeciseSchema = new mongoose.Schema(
       ref: "user",
     },
   },
-  { timestamps: true }
+  { timestamps: true },
+  { versionKey: false }
 );
 
 module.exports = Exercise = mongoose.model("exercise", ExeciseSchema);

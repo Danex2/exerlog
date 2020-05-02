@@ -6,13 +6,13 @@ const isAuthenticated = (req, res, next) => {
 
     jwt.verify(token, "mysecret", { algorithm: "HS256" }, (err, user) => {
       if (err) {
-        res.status(500).json({ error: "Not Authorized" });
+        return res.status(500).json({ error: "Not Authorized" });
       }
       res.locals.id = user.id;
       return next();
     });
   } else {
-    res.status(500).json({ error: "Not Authorized" });
+    return res.status(500).json({ error: "Not Authorized" });
   }
 };
 

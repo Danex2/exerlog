@@ -41,7 +41,7 @@ module.exports = {
         algorithm: "HS256",
         expiresIn: "1h",
       });
-      res.status(200).json(token);
+      return res.status(200).json(token);
     } catch (error) {
       next(error);
     }
