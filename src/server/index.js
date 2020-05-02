@@ -5,6 +5,7 @@ const cors = require("cors");
 
 const User = require("./models/User");
 const authentication = require("./routes/authentication");
+const exercise = require("./routes/exercise");
 const isAuthenticated = require("./middleware/middleware");
 
 require("dotenv").config();
@@ -18,7 +19,7 @@ app.use(helmet());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
-app.use(authentication);
+app.use([authentication, exercise]);
 
 app.get("/", (req, res) => {
   res.send("Starting point for app.");
@@ -31,14 +32,14 @@ app.get("/secret", isAuthenticated, async (req, res, next) => {
 
 app.use((req, res, next) => {
   return res.status(404).json({
-    status: "404",
+    status: 404,
     message: `No such route: ${req.path}`,
   });
 });
 
 app.use((err, req, res, next) => {
   return res.status(500).json({
-    status: "500",
+    status: 500,
     message: err.message,
   });
 });
