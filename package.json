@@ -6,9 +6,14 @@
   "private": true,
   "scripts": {
     "dev": "nodemon src/server/index.js",
-    "test": "jest src/server/tests --detectOpenHandles --forceExit"
+    "test": "jest src/server/tests"
   },
-  "keywords": [],
+  "keywords": [
+    "exercise",
+    "react",
+    "express",
+    "javascript"
+  ],
   "author": "Dane Miller <khadane.miller@gmail.com>",
   "license": "ISC",
   "dependencies": {
@@ -32,8 +37,7 @@
     "lint-staged": "^10.2.1",
     "mongodb-memory-server-core": "^6.5.2",
     "nodemon": "^2.0.3",
-    "prettier": "^2.0.5",
-    "supertest": "^4.0.2"
+    "prettier": "^2.0.5"
   },
   "lint-staged": {
     "src/server/**/*.js": [

@@ -16,7 +16,7 @@ module.exports = {
       if (user) {
         return res.status(400).json({
           status: 400,
-          message: "Error: User already exists",
+          message: "User already exists",
         });
       }
       const hashedPassword = await bcrypt.hash(password, 10);
