@@ -6,7 +6,8 @@
   "private": true,
   "scripts": {
     "dev": "nodemon src/server/index.js",
-    "test": "jest src/server/tests"
+    "test": "jest src/server/tests",
+    "test:watch": "jest src/server/tests --watch"
   },
   "keywords": [
     "exercise",

@@ -33,7 +33,7 @@ module.exports = {
       if (!user) {
         return res.status(400).json({
           status: 400,
-          message: "Error: No one with that username exists",
+          message: "No one with that username exists",
         });
       }
       const valid = await bcrypt.compare(password, user.password);

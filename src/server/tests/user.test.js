@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const { MongoMemoryServer } = require("mongodb-memory-server-core");
 const User = require("../models/User");
-const { register } = require("../controllers/user.controller");
+const { register, login } = require("../controllers/user.controller");
 const { mockedRequest, mockedResponse } = require("./mocks");
 
 jasmine.DEFAULT_TIMEOUT_INTERVAL = 600000;
@@ -61,6 +61,47 @@ describe("Authentication and Authorization flow", () => {
       const res = mockedResponse();
       await register(req, res);
       expect(res.status).toHaveBeenCalledWith(201);
+      done();
+    });
+  });
+  describe("Login", () => {
+    it("Should 400 if the user does not exist", async (done) => {
+      const req = mockedRequest({
+        username: "dane12345",
+        password: "password",
+      });
+      const res = mockedResponse();
+      await login(req, res);
+      expect(res.status).toHaveBeenCalledWith(400);
+      expect(res.json).toHaveBeenCalledWith({
+        status: 400,
+        message: "No one with that username exists",
+      });
+      done();
+    });
+    it("Should 400 if password is incorrect", async (done) => {
+      const req = mockedRequest({
+        username: "dane1234",
+        password: "passworddd",
+      });
+      const res = mockedResponse();
+      await login(req, res);
+      expect(res.status).toHaveBeenCalledWith(400);
+      expect(res.json).toHaveBeenCalledWith({
+        status: 400,
+        message: "Invalid username or password",
+      });
+      done();
+    });
+    it("Should 200 if everything is okay", async (done) => {
+      const req = mockedRequest({
+        username: "dane1234",
+        password: "password",
+      });
+      const res = mockedResponse();
+      await login(req, res);
+      expect(res.status).toHaveBeenCalledWith(200);
+      expect(res.json).toBeTruthy();
       done();
     });
   });
