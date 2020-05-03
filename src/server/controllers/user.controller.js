@@ -7,6 +7,12 @@ module.exports = {
     try {
       const { username, password } = req.body;
       const user = await User.findOne({ username });
+      if (!username || !password) {
+        return res.status(400).json({
+          status: 400,
+          message: "Missing username or password",
+        });
+      }
       if (user) {
         return res.status(400).json({
           status: 400,
@@ -41,7 +47,7 @@ module.exports = {
         algorithm: "HS256",
         expiresIn: "1h",
       });
-      return res.status(200).json(token);
+      return res.status(200).json({ token });
     } catch (error) {
       next(error);
     }

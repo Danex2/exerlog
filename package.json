@@ -5,12 +5,14 @@
   "main": "src/server/index.js",
   "private": true,
   "scripts": {
-    "dev": "nodemon src/server/index.js"
+    "dev": "nodemon src/server/index.js",
+    "test": "jest src/server/tests --detectOpenHandles --forceExit"
   },
   "keywords": [],
   "author": "Dane Miller <khadane.miller@gmail.com>",
   "license": "ISC",
   "dependencies": {
+    "@types/jest": "^25.2.1",
     "autoprefixer": "^9.7.6",
     "bcrypt": "^4.0.1",
     "cors": "^2.8.5",
@@ -28,6 +30,7 @@
     "husky": "^4.2.5",
     "jest": "^25.5.2",
     "lint-staged": "^10.2.1",
+    "mongodb-memory-server-core": "^6.5.2",
     "nodemon": "^2.0.3",
     "prettier": "^2.0.5",
     "supertest": "^4.0.2"
@@ -41,5 +44,8 @@
     "hooks": {
       "pre-commit": "lint-staged"
     }
+  },
+  "jest": {
+    "testEnvironment": "node"
   }
 }
