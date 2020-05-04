@@ -1,0 +1,16 @@
+version: "3"
+
+services:
+  api:
+    build: .
+    volumes:
+      - ./src/server:/usr/src/app
+    ports:
+      - "3000:3000"
+    restart: always
+    depends_on:
+      - exerdb
+  exerdb:
+    image: mongo:latest
+    ports:
+      - "27017:27017"

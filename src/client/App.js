@@ -3,7 +3,7 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 
 const App = () => (
-  <div className="min-h-screen flex justify-center items-center bg-gray-200 max-w-6xl m-auto">
+  <div className="min-h-screen flex bg-gray-200 max-w-6xl m-auto">
     <Register />
   </div>
 );

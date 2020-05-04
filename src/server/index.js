@@ -3,10 +3,8 @@ const mongoose = require("mongoose");
 const helmet = require("helmet");
 const cors = require("cors");
 
-const User = require("./models/User");
 const authentication = require("./routes/userRoutes");
 const exercise = require("./routes/exerciseRoutes");
-const isAuthenticated = require("./middleware/middleware");
 
 require("dotenv").config();
 
@@ -20,15 +18,6 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 app.use([authentication, exercise]);
-
-app.get("/", (req, res) => {
-  res.send("Starting point for app.");
-});
-
-app.get("/secret", isAuthenticated, async (req, res, next) => {
-  const user = await User.findById({ _id: res.locals.id });
-  res.status(200).json(user);
-});
 
 app.use((req, res, next) => {
   return res.status(404).json({
