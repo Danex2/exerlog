@@ -21,7 +21,7 @@ const Login = () => (
       required
       placeholder="password"
     />
-    <button className="bg-red-500 rounded py-2 shadow-md text-red-900 font-bold">
+    <button className="bg-red-500 rounded py-2 shadow-md text-white font-bold">
       Login
     </button>
   </form>
