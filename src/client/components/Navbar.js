@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const [hidden, setHidden] = React.useState(true);
@@ -7,18 +8,18 @@ const Navbar = () => {
       <div className="flex justify-between">
         <h1 className="text-red-500 font-bold tracking-wide">Exerlog</h1>
         <div className="hidden sm:block">
-          <a
-            href="#"
+          <Link
+            to="/login"
             className="mr-5 text-red-500 font-bold tracking-wide hover:text-red-700 transition duration-150"
           >
             Login
-          </a>
-          <a
-            href="#"
+          </Link>
+          <Link
+            to="/register"
             className="text-red-500 font-bold tracking-wide hover:text-red-700 transition duration-150"
           >
             Register
-          </a>
+          </Link>
         </div>
         <svg
           className="h-8 text-red-500 sm:hidden"
