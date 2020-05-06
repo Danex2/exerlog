@@ -43,5 +43,3 @@ mongoose
     console.log("MongDB started.");
     app.listen(PORT, () => console.log("Server started sucessfully."));
   });
-
-module.exports = app;

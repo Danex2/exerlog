@@ -22,7 +22,7 @@ const Navbar = () => {
           </Link>
         </div>
         <svg
-          className="h-8 text-red-500 sm:hidden"
+          className="h-6 text-red-500 sm:hidden cursor-pointer"
           viewBox="0 0 24 24"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
