@@ -2,7 +2,9 @@ import React from "react";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Navbar from "./components/Navbar";
+import Exercises from "./pages/Exercises";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import PrivateRoute from "./components/PrivateRoute";
 
 const App = () => (
   <div className="bg-gray-200">
@@ -16,9 +18,9 @@ const App = () => (
           <Route path="/login">
             <Login />
           </Route>
-          <Route path="/">
-            <Login />
-          </Route>
+          <PrivateRoute path="/exercises">
+            <Exercises />
+          </PrivateRoute>
         </Switch>
       </Router>
     </div>

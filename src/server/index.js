@@ -2,6 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const helmet = require("helmet");
 const cors = require("cors");
+const cookieParser = require("cookie-parser");
 
 const authentication = require("./routes/userRoutes");
 const exercise = require("./routes/exerciseRoutes");
@@ -12,8 +13,9 @@ const app = express();
 
 const PORT = process.env.PORT || 3000;
 
-app.use(cors());
+app.use(cors({ credentials: true, origin: "http://localhost:1234" }));
 app.use(helmet());
+app.use(cookieParser());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
