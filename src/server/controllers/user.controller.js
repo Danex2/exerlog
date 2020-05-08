@@ -47,16 +47,19 @@ module.exports = {
         algorithm: "HS256",
         expiresIn: "1h",
       });
-      return res
-        .cookie("token", token, {
-          maxAge: 60 * 60 * 1000,
-          httpOnly: false,
-          secure: false,
-          sameSite: false,
-        })
-        .end();
+      res.cookie("token", token, {
+        maxAge: 60 * 60 * 1000,
+        httpOnly: false,
+        secure: false,
+        sameSite: false,
+      });
+      return res.status(200).end();
     } catch (error) {
       next(error);
     }
+  },
+  logout: async (req, res, next) => {
+    res.clearCookie("token");
+    return res.status(200).json({ message: "Logged out" });
   },
 };

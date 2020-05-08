@@ -2,9 +2,12 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
+import { useDispatch } from "react-redux";
+import { login } from "../redux/authSlice";
 
 const Login = () => {
   const { register, handleSubmit } = useForm();
+  const dispatch = useDispatch();
 
   const [error, setError] = React.useState(null);
   const history = useHistory();
@@ -20,6 +23,7 @@ const Login = () => {
         },
         { withCredentials: true }
       )
+      .then(() => dispatch(login()))
       .then(() => history.push("/exercises"))
       .catch((error) => setError(error.response.data.message));
   };

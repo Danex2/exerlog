@@ -1,12 +1,16 @@
 import React from "react";
+import axios from "axios";
 
 export const useAuth = () => {
-  const [auth, setAuth] = React.useState(false);
+  const [auth, setAuth] = React.useState(null);
   React.useEffect(() => {
-    let token = window.localStorage.hasOwnProperty("token");
-    if (token) {
-      setAuth(true);
-    }
+    axios
+      .get("http://localhost:3000/authenticate", { withCredentials: true })
+      .then((res) => {
+        if (res.status === 200) {
+          setAuth(true);
+        }
+      });
   }, [auth]);
   return {
     auth,

@@ -1,24 +1,23 @@
 import React from "react";
-import { Route, Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
+import axios from "axios";
+import { login, logout } from "../redux/authSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
-  const [auth, setAuth] = React.useState(false);
+  const dispatch = useDispatch();
+  const auth = useSelector((state) => state.auth);
 
   React.useEffect(() => {
-    let token = localStorage.getItem("token");
-    if (token) {
-      setAuth(true);
-    }
-    setAuth(false);
-  }, []);
-  return (
-    <Route
-      {...rest}
-      render={(props) =>
-        auth ? <Component {...props} /> : <Redirect to="/login" />
-      }
-    />
-  );
+    axios
+      .get("http://localhost:3000/authenticate", { withCredentials: true })
+      .then((res) => {
+        if (res.status === 200) {
+          dispatch(login());
+        }
+      });
+  }, [auth, dispatch]);
+  return auth ? <Component {...props} /> : <Redirect to="/login" />;
 };
 
 export default PrivateRoute;

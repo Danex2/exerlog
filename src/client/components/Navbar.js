@@ -1,25 +1,53 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { logout } from "../redux/authSlice";
 
 const Navbar = () => {
   const [hidden, setHidden] = React.useState(true);
+  const auth = useSelector((state) => state.authed);
+  const dispatch = useDispatch();
+  console.log(auth);
+
+  let history = useHistory();
   return (
     <nav className="text-lg p-3">
       <div className="flex justify-between">
         <h1 className="text-red-500 font-bold tracking-wide">Exerlog</h1>
         <div className="hidden sm:block">
-          <Link
-            to="/login"
-            className="mr-5 text-red-500 font-bold tracking-wide hover:text-red-700 transition duration-150"
-          >
-            Login
-          </Link>
-          <Link
-            to="/register"
-            className="text-red-500 font-bold tracking-wide hover:text-red-700 transition duration-150"
-          >
-            Register
-          </Link>
+          {auth ? (
+            <>
+              <Link
+                to="/create"
+                className="mr-5 text-red-500 font-bold tracking-wide hover:text-red-700 transition duration-150"
+              >
+                Create
+              </Link>
+              <Link
+                to="/logout"
+                className="text-red-500 font-bold tracking-wide hover:text-red-700 transition duration-150"
+                onClick={() => dispatch(logout())}
+              >
+                Logout
+              </Link>
+            </>
+          ) : (
+            <>
+              <Link
+                to="/login"
+                className="mr-5 text-red-500 font-bold tracking-wide hover:text-red-700 transition duration-150"
+              >
+                Login
+              </Link>
+              <Link
+                to="/register"
+                className="text-red-500 font-bold tracking-wide hover:text-red-700 transition duration-150"
+              >
+                Register
+              </Link>
+            </>
+          )}
         </div>
         <svg
           className="h-6 text-red-500 sm:hidden cursor-pointer"

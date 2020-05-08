@@ -2,6 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const helmet = require("helmet");
 const cors = require("cors");
+const jwt = require("jsonwebtoken");
 const cookieParser = require("cookie-parser");
 
 const authentication = require("./routes/userRoutes");
@@ -20,6 +21,24 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 app.use([authentication, exercise]);
+
+app.get("/authenticate", async (req, res, next) => {
+  try {
+    if (req.cookies.token) {
+      let token = req.cookies.token;
+      jwt.verify(token, "mysecret", { algorithm: "HS256" }, (err, user) => {
+        if (err) {
+          return res.status(500).json({ error: "Not Authorized" });
+        }
+        res.locals.id = user.id;
+        return res.status(200).end();
+      });
+    }
+    return res.status(500).json({ error: "Not Authorized" });
+  } catch (error) {
+    next(error);
+  }
+});
 
 app.use((req, res, next) => {
   return res.status(404).json({
