@@ -11,7 +11,7 @@ const Navbar = () => {
   return (
     <nav className="text-lg p-3">
       <div className="flex justify-between">
-        <Link to="/exercises" className="text-red-500 font-bold tracking-wide">
+        <Link to="/workouts" className="text-red-500 font-bold tracking-wide">
           Exerlog
         </Link>
         <div className="hidden sm:block">

@@ -25,7 +25,7 @@ const Create = () => {
           },
         }
       )
-      .then(() => history.push("/exercises"))
+      .then(() => history.push("/workouts"))
       .catch((error) => setError(error.response.data.message));
   };
   return (
