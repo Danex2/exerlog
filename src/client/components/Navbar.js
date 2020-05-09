@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { logout } from "../redux/authSlice";
 
@@ -8,9 +7,7 @@ const Navbar = () => {
   const [hidden, setHidden] = React.useState(true);
   const auth = useSelector((state) => state.authed);
   const dispatch = useDispatch();
-  console.log(auth);
 
-  let history = useHistory();
   return (
     <nav className="text-lg p-3">
       <div className="flex justify-between">
@@ -25,10 +22,9 @@ const Navbar = () => {
                 Create
               </Link>
               <Link
-                to="/logout"
+                to="/login"
                 className="text-red-500 font-bold tracking-wide hover:text-red-700 transition duration-150"
                 onClick={() => {
-                  history.push("/login");
                   dispatch(logout());
                   localStorage.removeItem("token");
                 }}
@@ -75,18 +71,41 @@ const Navbar = () => {
         </svg>
       </div>
       <div className={`${hidden ? "hidden" : ""} sm:hidden`}>
-        <a
-          href="#"
-          className="mr-5 text-red-500 font-bold tracking-wide hover:text-red-700 transition duration-150 block"
-        >
-          Login
-        </a>
-        <a
-          href="#"
-          className="text-red-500 font-bold tracking-wide hover:text-red-700 transition duration-150"
-        >
-          Register
-        </a>
+        {auth ? (
+          <>
+            <Link
+              to="/create"
+              className="mr-5 text-red-500 font-bold tracking-wide hover:text-red-700 transition duration-150"
+            >
+              Create
+            </Link>
+            <Link
+              to="/login"
+              className="text-red-500 font-bold tracking-wide hover:text-red-700 transition duration-150"
+              onClick={() => {
+                dispatch(logout());
+                localStorage.removeItem("token");
+              }}
+            >
+              Logout
+            </Link>
+          </>
+        ) : (
+          <>
+            <Link
+              to="/login"
+              className="mr-5 text-red-500 font-bold tracking-wide hover:text-red-700 transition duration-150"
+            >
+              Login
+            </Link>
+            <Link
+              to="/register"
+              className="text-red-500 font-bold tracking-wide hover:text-red-700 transition duration-150"
+            >
+              Register
+            </Link>
+          </>
+        )}
       </div>
     </nav>
   );

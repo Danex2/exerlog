@@ -1,8 +1,8 @@
 const jwt = require("jsonwebtoken");
 
 const isAuthenticated = (req, res, next) => {
-  if (req.cookies.token) {
-    let token = req.cookies.token;
+  if (typeof req.headers.authorization !== "undefined") {
+    let token = req.headers.authorization.split(" ")[1];
 
     jwt.verify(token, "mysecret", { algorithm: "HS256" }, (err, user) => {
       if (err) {

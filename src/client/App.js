@@ -14,6 +14,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import authReducer from "./redux/authSlice";
 import PrivateRoute from "./components/PrivateRoute";
 import NotFound from "./pages/NotFound";
+import Create from "./pages/Create";
 
 const store = configureStore({
   reducer: authReducer,
@@ -36,6 +37,7 @@ const App = () => (
             <Route path="/exercises">
               <Exercises />
             </Route>
+            <PrivateRoute path="/create" component={Create} />
             <Route path="*">
               <NotFound />
             </Route>
