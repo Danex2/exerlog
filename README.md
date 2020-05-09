@@ -1,6 +1,6 @@
 # Exerlog - Log your quarantine workouts 💪💪
 
-![Build and Deploy app](https://github.com/Danex2/exerlog/workflows/Build%20and%20Deploy%20app/badge.svg)
+![Staging CI](https://github.com/Danex2/exerlog/workflows/Build%20and%20Deploy%20app/badge.svg)
 
 ![Puppet working out](https://media.giphy.com/media/xUPGcKoAYCn5fHK0Zq/giphy.gif)
 
@@ -18,7 +18,7 @@ Just a fullstack app made with express / react during a pandemic to help me get 
 
 ```javascript
 PORT = 3000;
-DB_URI = YOUR_MONGO_URI_HERE;
+MONGODB_URI = YOUR_MONGO_URI_HERE;
 ```
 
 ### Installation
