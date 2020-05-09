@@ -14,8 +14,8 @@
     "test:watch": "jest src/server/tests --watch",
     "dev:client": "parcel src/client/index.html --open",
     "build": "parcel build src/client/index.html --out-dir src/client/public",
-    "prod:server": "node src/server/index.js",
-    "heroku-postbuild": "npm run build && npm run prod:server"
+    "start": "node src/server/index.js",
+    "heroku-postbuild": "npm run build"
   },
   "keywords": [
     "exercise",
