@@ -2,10 +2,9 @@ const express = require("express");
 const mongoose = require("mongoose");
 const helmet = require("helmet");
 const cors = require("cors");
-const jwt = require("jsonwebtoken");
-
 const authentication = require("./routes/userRoutes");
 const exercise = require("./routes/exerciseRoutes");
+const path = require("path");
 
 require("dotenv").config();
 
@@ -13,12 +12,22 @@ const app = express();
 
 const PORT = process.env.PORT || 3000;
 
-app.use(cors());
+app.use(
+  cors({
+    methods: ["GET", "POST"],
+  })
+);
 app.use(helmet());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 app.use([authentication, exercise]);
+
+app.use(express.static("src/client/public"));
+
+app.get("*", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "../client/public", "index.html"));
+});
 
 app.use((req, res, next) => {
   return res.status(404).json({
@@ -35,7 +44,7 @@ app.use((err, req, res, next) => {
 });
 
 mongoose
-  .connect(process.env.DB_URI || "mongodb://localhost:27017/exerdb", {
+  .connect(process.env.DB_URI || "mongodb://exerdb:27017/exerdb", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true,

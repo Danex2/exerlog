@@ -1,16 +1,33 @@
 version: "3"
 
 services:
-  api:
-    build: .
+  client:
+    image: node:12-alpine
+    container_name: react-frontend
+    command: npm run dev:client
+    working_dir: /usr/src/app
     volumes:
-      - ./src/server:/usr/src/app
+      - .:/usr/src/app
+      - node_modules:/usr/src/app/node_modules
+    ports:
+      - "1234:1234"
+    depends_on:
+      - api
+  api:
+    container_name: express-api
+    image: node:12-alpine
+    command: npm run dev:server
+    working_dir: /usr/src/app
+    volumes:
+      - .:/usr/src/app
+      - node_modules:/usr/src/ap/node_modules
     ports:
       - "3000:3000"
     restart: always
     depends_on:
       - exerdb
   exerdb:
+    container_name: mongo-database
     image: mongo:latest
     ports:
       - "27017:27017"

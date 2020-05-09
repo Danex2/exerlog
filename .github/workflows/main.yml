@@ -1,9 +1,9 @@
-name: "Run tests"
+name: "Build and Deploy app"
 
 on: [push]
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
 
     steps:
@@ -28,5 +28,11 @@ jobs:
         run: |
           npm ci
           npm run test
+      - uses: akhileshns/heroku-deploy@v3.0.4
+        with:
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: "exerlog"
+          heroku_email: ${{secrets.USER_EMAIL}}
+          appdir: ""
         env:
           CI: true

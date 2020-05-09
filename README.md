@@ -29,7 +29,7 @@ npm install
 
 ### Running the project without Docker
 
-To run the project just do `npm run dev` then visit `localhost:1234` in your browser
+To run the project just do `npm run app`, a new tab / browser will open for you.
 
 ### Running the project with Docker
 
@@ -37,6 +37,8 @@ To run the project using docker use docker-compose
 `docker-compose up`
 
 ## Testing
+
+Tests are located in the `tests` folder, to run them just type `npm run test` or if you want to run in watch mode just type `npm run test:watch`.
 
 ## Author
 
