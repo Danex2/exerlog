@@ -15,7 +15,7 @@
     "dev:client": "parcel src/client/index.html --open",
     "build": "parcel build src/client/index.html --out-dir src/client/public",
     "prod:server": "node src/server/index.js",
-    "heroku-postbuild": "npm run build && npm install --prefix client && npm run build --prefix client"
+    "heroku-postbuild": "npm run build && npm run prod:server"
   },
   "keywords": [
     "exercise",
