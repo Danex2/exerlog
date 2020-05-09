@@ -14,7 +14,7 @@ const Create = () => {
     const { exercise, duration } = data;
     axios
       .post(
-        "http://localhost:3000/exercises",
+        "/exercises",
         {
           exercise,
           duration,

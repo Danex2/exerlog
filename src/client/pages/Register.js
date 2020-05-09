@@ -12,7 +12,7 @@ const Register = () => {
   const onSubmit = (data) => {
     const { username, password } = data;
     axios
-      .post("http://localhost:3000/register", {
+      .post("/register", {
         username,
         password,
       })
