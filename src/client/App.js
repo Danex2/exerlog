@@ -34,7 +34,7 @@ const App = () => (
               <Login />
             </Route>
             <Redirect exact from="/" to="/login" />
-            <Route path="/exercises">
+            <Route path="/workouts">
               <Exercises />
             </Route>
             <PrivateRoute path="/create" component={Create} />
