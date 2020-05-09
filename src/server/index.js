@@ -44,7 +44,7 @@ app.use((err, req, res, next) => {
 });
 
 mongoose
-  .connect(process.env.DB_URI || "mongodb://exerdb:27017/exerdb", {
+  .connect(process.env.MONGODB_URI || "mongodb://exerdb:27017/exerdb", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true,
