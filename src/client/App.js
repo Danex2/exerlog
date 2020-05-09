@@ -3,11 +3,17 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Navbar from "./components/Navbar";
 import Exercises from "./pages/Exercises";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from "react-router-dom";
 import { Provider } from "react-redux";
 import { configureStore } from "@reduxjs/toolkit";
 import authReducer from "./redux/authSlice";
 import PrivateRoute from "./components/PrivateRoute";
+import NotFound from "./pages/NotFound";
 
 const store = configureStore({
   reducer: authReducer,
@@ -20,15 +26,19 @@ const App = () => (
         <Router>
           <Navbar />
           <Switch>
-            <Route path="/register">
+            <Route exact path="/register">
               <Register />
             </Route>
-            <Route path="/login">
+            <Route exact path="/login">
               <Login />
             </Route>
-            <PrivateRoute path="/exercises">
+            <Redirect exact from="/" to="/login" />
+            <Route path="/exercises">
               <Exercises />
-            </PrivateRoute>
+            </Route>
+            <Route path="*">
+              <NotFound />
+            </Route>
           </Switch>
         </Router>
       </div>

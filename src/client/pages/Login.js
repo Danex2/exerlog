@@ -15,15 +15,14 @@ const Login = () => {
   const onSubmit = (data) => {
     const { username, password } = data;
     axios
-      .post(
-        "http://localhost:3000/login",
-        {
-          username,
-          password,
-        },
-        { withCredentials: true }
-      )
-      .then(() => dispatch(login()))
+      .post("http://localhost:3000/login", {
+        username,
+        password,
+      })
+      .then((res) => {
+        dispatch(login());
+        localStorage.setItem("token", res.data.token);
+      })
       .then(() => history.push("/exercises"))
       .catch((error) => setError(error.response.data.message));
   };

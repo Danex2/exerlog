@@ -27,7 +27,11 @@ const Navbar = () => {
               <Link
                 to="/logout"
                 className="text-red-500 font-bold tracking-wide hover:text-red-700 transition duration-150"
-                onClick={() => dispatch(logout())}
+                onClick={() => {
+                  history.push("/login");
+                  dispatch(logout());
+                  localStorage.removeItem("token");
+                }}
               >
                 Logout
               </Link>

@@ -47,13 +47,7 @@ module.exports = {
         algorithm: "HS256",
         expiresIn: "1h",
       });
-      res.cookie("token", token, {
-        maxAge: 60 * 60 * 1000,
-        httpOnly: false,
-        secure: false,
-        sameSite: false,
-      });
-      return res.status(200).end();
+      return res.status(200).json({ token });
     } catch (error) {
       next(error);
     }
