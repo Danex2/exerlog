@@ -35,8 +35,7 @@ To run the project just do `npm run app`, a new tab / browser will open for you.
 
 ### Running the project with Docker
 
-To run the project using docker use docker-compose
-`docker-compose up`
+TODO
 
 ## Testing
 
